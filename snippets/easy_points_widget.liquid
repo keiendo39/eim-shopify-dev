@@ -1,0 +1,284 @@
+{%- assign shop_ep_metafield = shop.metafields.loyalty.easy_points_attributes.value -%}
+{% unless shop_ep_metafield.stealth_mode %}
+  {%- assign customer_ep_metafield = customer.metafields.loyalty.easy_points_attributes.value -%}
+  {% if customer and shop_ep_metafield.widget %}
+    {% capture medal_path %}
+      M393.4,177.8c-4.1-6.5-4.1-14.8,0-21.3c4.8-7.6,6.4-16.8,4.4-25.5s-7.4-16.3-15-21.1
+      c-6.5-4.1-10.1-11.6-9.2-19.3c1-8.9-1.5-17.9-7.1-24.9s-13.8-11.5-22.7-12.5c-7.7-0.8-14.2-6-16.7-13.3c-2.9-8.5-9.1-15.5-17.2-19.3
+      c-8.1-3.9-17.4-4.4-25.9-1.4c-7.3,2.6-15.4,0.7-20.8-4.7c-6.3-6.4-14.9-10-23.9-10s-17.6,3.6-23.9,10c-5.5,5.5-13.6,7.3-20.8,4.7
+      c-8.5-3-17.8-2.5-25.9,1.4c-8.1,3.9-14.3,10.9-17.2,19.4c-2.5,7.3-9,12.5-16.7,13.3c-8.9,1-17.1,5.4-22.7,12.5
+      c-5.6,7-8.2,16-7.1,24.9c0.9,7.7-2.7,15.2-9.2,19.3c-7.6,4.7-13,12.3-15,21.1c-2,8.7-0.4,17.9,4.4,25.5c4.1,6.5,4.1,14.8,0,21.3
+      c-4.8,7.6-6.4,16.8-4.4,25.5c2,8.8,7.4,16.3,15,21.1c6.5,4.1,10.1,11.6,9.2,19.2c-1.1,8.9,1.5,17.9,7.1,24.9s13.8,11.5,22.7,12.5
+      c7.7,0.8,14.2,6,16.7,13.3c1.7,5,4.6,9.5,8.4,13.2v157.2c0,2.4,1.3,4.7,3.4,5.9c2.1,1.2,4.7,1.2,6.8,0l69.1-39.8l69.1,39.8
+      c1,0.6,2.2,0.9,3.4,0.9c1.2,0,2.4-0.3,3.4-0.9c2.1-1.2,3.4-3.5,3.4-5.9V307.5c3.8-3.7,6.7-8.2,8.4-13.2c2.5-7.3,9-12.5,16.7-13.3
+      c8.9-0.9,17.1-5.4,22.7-12.5c5.6-7,8.2-16,7.1-24.9c-0.9-7.7,2.7-15.1,9.2-19.2c7.6-4.7,13.1-12.3,15.1-21.1
+      C399.9,194.6,398.3,185.4,393.4,177.8z M173.6,315.6c6.9,2.1,14.2,1.9,21-0.5c7.3-2.6,15.4-0.7,20.8,4.8c4.6,4.7,10.6,7.9,17,9.2
+      V419l-58.8,33.8V315.6z M305,452.8L246.1,419v-89.9c6.5-1.3,12.4-4.5,17-9.2c5.4-5.5,13.6-7.3,20.8-4.8c6.7,2.5,14.1,2.6,21,0.5
+      v137.2H305z M381.9,185.2c2.8,4.5,3.8,9.9,2.6,15.1c-1.2,5.2-4.4,9.7-8.9,12.5c-11.1,6.9-17.2,19.6-15.7,32.5
+      c0.6,5.3-0.9,10.6-4.2,14.8c-3.3,4.2-8.2,6.8-13.4,7.4c-9.5,1-18.1,6-23.6,13.8c-2,2.7-3.5,5.6-4.6,8.7c-1.6,4.6-4.8,8.5-9.1,10.9
+      c-0.4,0.2-0.7,0.4-1.1,0.5c-4.8,2.3-10.3,2.6-15.3,0.8c-12.3-4.4-26-1.2-35.2,8c-2,2.1-4.5,3.7-7.3,4.7c-4.4,1.6-9.3,1.6-13.7,0
+      c-2.7-1-5.2-2.6-7.3-4.7c-6.4-6.4-15-10-24-9.9c-3.8,0-7.6,0.7-11.2,2c-5,1.8-10.5,1.5-15.3-0.8c-0.4-0.2-0.7-0.4-1.1-0.5
+      c-4.3-2.4-7.5-6.3-9.1-10.9c-1.1-3.1-2.6-6-4.6-8.7c-5.5-7.8-14.1-12.8-23.6-13.8c-5.3-0.6-10.1-3.2-13.4-7.4
+      c-3.3-4.2-4.8-9.5-4.2-14.8c1.5-13-4.6-25.6-15.7-32.5c-4.5-2.8-7.7-7.3-8.9-12.5c-1.2-5.2-0.3-10.6,2.6-15.1c7-11,7-25.1,0-36.1
+      c-2.8-4.5-3.8-9.9-2.6-15.1c1.2-5.2,4.4-9.7,8.9-12.5c11.1-6.9,17.2-19.6,15.7-32.5c-0.6-5.3,0.9-10.6,4.2-14.7
+      c3.3-4.2,8.1-6.8,13.4-7.4c13-1.4,23.9-10.2,28.2-22.5c1.7-5,5.4-9.1,10.2-11.4c4.8-2.3,10.3-2.6,15.3-0.8c12.3,4.3,26,1.2,35.2-8
+      c3.7-3.8,8.8-5.9,14.1-5.9s10.4,2.1,14.1,5.9c9.2,9.2,22.9,12.4,35.2,8c5-1.8,10.5-1.5,15.3,0.8s8.5,6.4,10.2,11.4
+      c4.3,12.3,15.2,21.1,28.2,22.5c5.3,0.6,10.1,3.2,13.4,7.4c3.3,4.2,4.8,9.5,4.2,14.7c-1.5,13,4.6,25.6,15.7,32.5
+      c4.5,2.8,7.7,7.3,8.9,12.5c1.2,5.2,0.3,10.6-2.6,15.1C374.9,160.1,374.9,174.1,381.9,185.2z M239.3,45.5
+      c-53.3,0-100.5,34.7-116.2,85.7c-15.8,50.9,3.5,106.2,47.5,136.3c18.3,12.6,39.7,19.9,61.9,21.2c2.3,0.1,4.5,0.2,6.9,0.2
+      c2.3,0,4.6-0.1,6.9-0.2C312,285,362.9,229.6,361,163.8C359,97.9,305.1,45.5,239.3,45.5z M279.1,267.5c-10.5,4.2-21.7,6.7-33,7.4
+      c-2.3,0.2-4.5,0.2-6.9,0.2c-2.3,0-4.6-0.1-6.9-0.2c-11.3-0.7-22.5-3.2-33-7.4c-48.1-19.1-75.9-69.7-66.2-120.6s54.2-87.7,106-87.7
+      s96.3,36.8,106,87.7C355,197.7,327.3,248.3,279.1,267.5z M266.8,136.7l-21.4-43.3c-1.1-2.3-3.5-3.8-6.2-3.8c-2.6,0-5,1.5-6.1,3.8
+      l-21.4,43.3l-47.8,6.9c-2.6,0.4-4.7,2.2-5.5,4.7s-0.1,5.2,1.7,7l34.6,33.7l-8.2,47.6c-0.4,2.6,0.6,5.2,2.7,6.7
+      c2.1,1.5,4.9,1.7,7.2,0.5l42.8-22.5l42.8,22.5c1,0.5,2.1,0.8,3.2,0.8c1.4,0,2.9-0.4,4-1.3c2.1-1.5,3.2-4.1,2.7-6.7l-8.2-47.6
+      l34.6-33.7c1.9-1.8,2.5-4.6,1.7-7c-0.8-2.5-2.9-4.3-5.5-4.7L266.8,136.7z M271.7,181.7c-1.6,1.6-2.3,3.8-2,6.1l6.4,37.5l-33.7-17.7
+      c-2-1-4.4-1-6.3,0l-33.7,17.7l6.4-37.5c0.4-2.2-0.3-4.5-2-6.1l-27.2-26.5l37.6-5.5c2.2-0.3,4.2-1.7,5.1-3.8l16.8-34.1l16.8,34.1
+      c1,2,2.9,3.4,5.1,3.8l37.6,5.5L271.7,181.7z
+    {% endcapture %}
+
+    {% capture white_medal_icon %}
+      <?xml version="1.0" encoding="utf-8"?>
+      <svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="0 0 476 476" style="enable-background:new 0 0 476 476;" xml:space="preserve">
+        <style type="text/css">
+          .white_path {
+            fill: #FFFFFF;
+            stroke: #FFFFFF;
+            stroke-width: 5;
+            stroke-miterlimit: 10;
+          }
+        </style>
+        <path class="white_path" d="{{ medal_path }}" />
+      </svg>
+    {% endcapture %}
+
+    {% capture blue_medal_icon %}
+      <?xml version="1.0" encoding="utf-8"?>
+      <svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="0 0 476 476" style="enable-background:new 0 0 476 476;" xml:space="preserve">
+        <style type="text/css">
+          .blue_path {
+            fill: #376891;
+            stroke: #376891;
+            stroke-width: 5;
+            stroke-miterlimit: 10;
+          }
+        </style>
+        <path class="blue_path" d="{{ medal_path }}" />
+      </svg>
+    {% endcapture %}
+
+    {% capture shopping_cart_icon %}
+      <?xml version="1.0" encoding="iso-8859-1"?>
+      <svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="0 0 511.999 511.999" style="height: 100%; width: 30%; color: #999999; opacity: 0.8; enable-background:new 0 0 511.999 511.999;"
+        xml:space="preserve">
+        <g>
+          <path d="M214.685,402.828c-24.829,0-45.029,20.2-45.029,45.029c0,24.829,20.2,45.029,45.029,45.029s45.029-20.2,45.029-45.029
+            C259.713,423.028,239.513,402.828,214.685,402.828z M214.685,467.742c-10.966,0-19.887-8.922-19.887-19.887
+            c0-10.966,8.922-19.887,19.887-19.887s19.887,8.922,19.887,19.887C234.572,458.822,225.65,467.742,214.685,467.742z" />
+        </g>
+        <g>
+          <path d="M372.63,402.828c-24.829,0-45.029,20.2-45.029,45.029c0,24.829,20.2,45.029,45.029,45.029s45.029-20.2,45.029-45.029
+            C417.658,423.028,397.458,402.828,372.63,402.828z M372.63,467.742c-10.966,0-19.887-8.922-19.887-19.887
+            c0-10.966,8.922-19.887,19.887-19.887c10.966,0,19.887,8.922,19.887,19.887C392.517,458.822,383.595,467.742,372.63,467.742z" />
+        </g>
+        <g>
+          <path d="M383.716,165.755H203.567c-6.943,0-12.571,5.628-12.571,12.571c0,6.943,5.629,12.571,12.571,12.571h180.149
+            c6.943,0,12.571-5.628,12.571-12.571C396.287,171.382,390.659,165.755,383.716,165.755z" />
+        </g>
+        <g>
+          <path d="M373.911,231.035H213.373c-6.943,0-12.571,5.628-12.571,12.571s5.628,12.571,12.571,12.571h160.537
+            c6.943,0,12.571-5.628,12.571-12.571C386.481,236.664,380.853,231.035,373.911,231.035z" />
+        </g>
+        <g>
+          <path d="M506.341,109.744c-4.794-5.884-11.898-9.258-19.489-9.258H95.278L87.37,62.097c-1.651-8.008-7.113-14.732-14.614-17.989
+            l-55.177-23.95c-6.37-2.767-13.773,0.156-16.536,6.524c-2.766,6.37,0.157,13.774,6.524,16.537L62.745,67.17l60.826,295.261
+            c2.396,11.628,12.752,20.068,24.625,20.068h301.166c6.943,0,12.571-5.628,12.571-12.571c0-6.943-5.628-12.571-12.571-12.571
+            H148.197l-7.399-35.916H451.69c11.872,0,22.229-8.44,24.624-20.068l35.163-170.675
+            C513.008,123.266,511.136,115.627,506.341,109.744z M451.69,296.301H135.619l-35.161-170.674l386.393,0.001L451.69,296.301z" />
+        </g>
+      </svg>
+    {% endcapture %}
+
+    {% capture minimize_icon %}
+      <svg style="width: 17px; height: 17px;" viewPort="1 1 16 16" version="1.1" xmlns="http://www.w3.org/2000/svg">
+        <line x1="1" y1="16" x2="16" y2="1" stroke="white" stroke-width="2"/>
+        <line x1="1" y1="1" x2="16" y2="16" stroke="white" stroke-width="2"/>
+      </svg>
+    {% endcapture %}
+
+    <div id="easy-points-widget">
+      {%- render 'redemption_form', hide_points_form: true -%}
+
+      <div id="widget-minimized" class="widget-shadowed minimized-widget-container sm-shrink">
+        <div id="widget-icon-container">
+          <div class="widget-loyalty-icon">
+            {{ white_medal_icon }}
+          </div>
+        </div>
+
+        <strong class="sm-hide">
+          <span data-loyal-target="balance">
+            {{ customer_ep_metafield.balance }}
+          </span>
+
+          {%- assign t_widget_points =  'easypoints.widget.points' | t -%}&nbsp;
+          {%- if t_widget_points contains 'translation missing: ' -%}
+Points
+          {%- else -%}
+            {{ t_widget_points }}
+          {%- endif -%}
+        </strong>
+      </div>
+
+      <div id="widget-container" class="easy-points-hide widget-shadowed">
+        <div id="widget-header">
+          <div class="widget-loyalty-icon">
+            {{ white_medal_icon }}
+          </div>
+
+          <strong>
+            {%- assign t_widget_loyalty_points_program =  'easypoints.widget.program_name' | t -%}
+            {%- if t_widget_loyalty_points_program contains 'translation missing: ' -%}
+Loyalty Points Program
+            {%- else -%}
+              {{ t_widget_loyalty_points_program }}
+            {%- endif -%}
+          </strong>
+
+          <span id="widget-close-btn">
+            {{ minimize_icon }}
+          </span>
+        </div>
+
+        <div id="widget-body">
+          <div id="widget-customer-container">
+            <div id="widget-customer-details">
+              <p class="widget-text-grey">
+                {%- assign t_widget_logged_in_as =  'easypoints.widget.logged_in_as' | t -%}
+                {%- if t_widget_logged_in_as contains 'translation missing: ' -%}
+Logged in as
+                {%- else -%}
+                  {{ t_widget_logged_in_as }}
+                {%- endif -%}
+              </p>
+
+              <strong id="widget-customer-name">{{ customer.first_name }}</strong>
+            </div>
+
+            <div id="widget-balance-container" class="text-align-right">
+              <p class="widget-text-grey">
+                {%- assign t_widget_current_balance =  'easypoints.widget.current_balance' | t -%}
+                {%- if t_widget_current_balance contains 'translation missing: ' -%}
+Point balance
+                {%- else -%}
+                  {{ t_widget_current_balance }}
+                {%- endif -%}
+              </p>
+
+              <strong id="widget-customer-balance">
+                <span data-loyal-target="balance">
+                  {{ customer_ep_metafield.balance }}
+                </span>
+              </strong>
+            </div>
+          </div>
+
+          <div id="widget-main">
+            {% if cart.item_count > 0 %}
+              <div id="widget-current-discount">
+                <p>
+                  {%- assign t_widget_current_discount =  'easypoints.widget.current_discount' | t -%}
+                  {%- if t_widget_current_discount contains 'translation missing: ' -%}
+Discount created
+                  {%- else -%}
+                    {{ t_widget_current_discount }}
+                  {%- endif -%}
+                </p>
+                <strong id="widget-applied-discount">
+                  <span data-loyal-target="applied-discount">-</span>
+                </strong>
+              </div>
+
+              <div id="widget-points-redeemed">
+                <p class="widget-text-grey">
+                  {%- assign t_widget_points_redeemed =  'easypoints.widget.points_redeemed' | t -%}
+                  {%- if t_widget_points_redeemed contains 'translation missing: ' -%}
+Points redeemed
+                  {%- else -%}
+                    {{ t_widget_points_redeemed }}
+                  {%- endif -%}
+                </p>
+
+                <input id="shown-point-value" type="text" pattern="[0-9]*" min="1" name="" placeholder="0">
+              </div>
+
+              <button
+                id="widget-redemption-button"
+                type="button"
+                name="redeem"
+                class="btn widget-btn"
+                {%- assign t_widget_redeeming =  'easypoints.widget.buttons.redeem.loading' | t -%}
+                {%- if t_widget_redeeming contains 'translation missing: ' -%}
+                  data-loyal-text-loading="Redeeming points"
+                {%- else -%}
+                  data-loyal-text-loading="{{ t_widget_redeeming }}"
+                {%- endif -%}
+              >
+                {%- assign t_widget_redeem =  'easypoints.widget.buttons.redeem.text' | t -%}
+                {%- if t_widget_redeem contains 'translation missing: ' -%}
+Redeem points
+                {%- else -%}
+                  {{ t_widget_redeem }}
+                {%- endif -%}
+              </button>
+
+              <button
+                id="widget-reset-button"
+                type="button"
+                name="reset"
+                class="btn widget-btn easy-points-hide"
+                {%- assign t_widget_resetting =  'easypoints.widget.buttons.reset.loading' | t -%}
+                {%- if t_widget_resetting contains 'translation missing: ' -%}
+                  data-loyal-text-loading="Resetting"
+                {%- else -%}
+                  data-loyal-text-loading="{{ t_widget_resetting }}"
+                {%- endif -%}
+              >
+                {%- assign t_widget_reset =  'easypoints.widget.buttons.reset.text' | t -%}
+                {%- if t_widget_reset contains 'translation missing: ' -%}
+Reset
+                {%- else -%}
+                  {{ t_widget_reset }}
+                {%- endif -%}
+              </button>
+
+            {% else %}
+
+              <div id="widget-cart-icon" class="weak widget-text-grey">
+                {{ shopping_cart_icon }}
+              </div>
+
+              <p class="widget-text-grey">
+                {%- assign t_widget_no_item =  'easypoints.widget.no_items' | t -%}
+                {%- if t_widget_no_item contains 'translation missing: ' -%}
+No items in cart
+                {%- else -%}
+                  {{ t_widget_no_item }}
+                {%- endif -%}
+              </p>
+
+              <p class="weak widget-text-grey">
+                {%- assign t_widget_add_item =  'easypoints.widget.add_items' | t -%}
+                {%- if t_widget_add_item contains 'translation missing: ' -%}
+Add items to redeem your points
+                {%- else -%}
+                  {{ t_widget_add_item }}
+                {%- endif -%}
+              </p>
+            {% endif %}
+          </div>
+
+        </div>
+      </div>
+    </div>
+  {% endif %}
+{% endunless %}

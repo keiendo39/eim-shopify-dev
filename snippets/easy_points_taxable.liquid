@@ -1,0 +1,27 @@
+{%- assign tax_rate = tax_rate | default: 1.1 -%}
+{%- assign tax_included = false -%}
+{%- assign tax_exempt = false -%}
+{%- if shop and shop.taxes_included -%}
+  {%- assign tax_included = true -%}
+{%- endif -%}
+{%- if customer and customer.tax_exempt -%}
+  {%- assign tax_exempt = true -%}
+{%- endif -%}
+
+{%- if price -%}
+  {%- assign tax_price = price -%}
+  {%- unless tax_included -%}
+    {%- unless tax_exempt -%}
+      {%- assign tax_price = price | times: tax_rate | floor -%}
+    {%- endunless -%}
+  {%- endunless -%}
+{%- endif -%}
+
+{%- if price -%}
+  {%- raw -%}
+  data-loyal-{%- endraw -%}{{ key | default: "currency-cost" }}{%- raw -%}="{%- endraw -%}{{ tax_price}}{%- raw -%}"
+  {%- endraw -%}
+{%- endif -%}
+{%- raw -%}
+  data-loyal-opts="{&quot;tax&quot;: {&quot;rate&quot;: {%- endraw -%}{{ tax_rate }}{%- raw -%}, &quot;included&quot;: {%- endraw -%}{{ tax_included }}{%- raw -%}, &quot;exempt&quot;: {%- endraw -%}{{ tax_exempt }}{%- raw -%}}}"
+{%- endraw -%}
