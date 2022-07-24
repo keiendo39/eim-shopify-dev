@@ -1,0 +1,43 @@
+<!-- hasigo_pre_order -->
+{% if product and product.metafields.hasigo_pre_order.enabled != blank %}
+  <style>
+  /* 購入フォーム内のボタン "add to cart", "buy it now" を隠す */
+  body:not(.hasigo-pre-order-loaded) form[action*="/cart/add"] [type="submit"],
+  body:not(.hasigo-pre-order-loaded) .shopify-payment-button
+  {
+    position: absolute;
+    top: -9999px;
+    display: none;
+  }
+
+  /* 予約商品なら "add to cart" を隠す */
+  form.hasigo-pre-order-enabled [type="submit"],
+  /* BUY IT NOW 以外の動的購入ボタンを隠す */
+  form.hasigo-pre-order-enabled .shopify-payment-button .shopify-payment-button__button--branded,
+  /* BUY IT NOW の下に hidden で存在する、「別のお支払い方法」を消す */
+  form.hasigo-pre-order-enabled .shopify-payment-button .shopify-payment-button__button--hidden
+  {
+    position: absolute;
+    top: -9999px;
+    display: none !important;
+  }
+  </style>
+  <script>
+  var HasigoPreOrder = window.HasigoPreOrder || {};
+  HasigoPreOrder.apiHost = {{ api_host | json }};
+  // ストア情報
+  HasigoPreOrder.shopDomain = {{ shop.permanent_domain | json }};
+  // 更新日
+  HasigoPreOrder.updatedAt = Date.now();
+  {% if shop.metafields.hasigo_pre_order.updated_at %}
+    HasigoPreOrder.updatedAt = {{ shop.metafields.hasigo_pre_order.updated_at | plus: 0 | json }};
+  {% endif %}
+  // 商品情報
+  HasigoPreOrder.productId = {{ product.id | plus: 0 | json }};
+  HasigoPreOrder.productAvailable = {{ product.selected_or_first_available_variant.available }};
+  // ボタンテキスト
+  HasigoPreOrder.buttonText = {{ shop.metafields.hasigo_pre_order.button_text | escape | default: '予約する' | json }};
+  </script>
+  <script defer src="https://{{ assets_host | escape }}/js/main-{{ theme_snippet_version | escape }}.js"></script>
+{% endif %}
+<!-- /hasigo_pre_order -->
