@@ -1,6 +1,7 @@
 <!doctype html>
 <html class="no-js" lang="{{ request.locale.iso_code }}">
   <head>
+{% comment %}EasylockdownHeadBegin{% endcomment %}{% capture elhRender %}{% render 'easylockdown_head', easylockdownRender: true, easylockdownCustomPriceSelector: easylockdownCustomPriceSelector %}{% endcapture %}{% assign elhRender = elhRender | split: '--elhResults--'%}{{ elhRender[0] }}{% comment %}EasylockdownHeadEnd{% endcomment %}
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width,initial-scale=1">
@@ -207,7 +208,20 @@
       document.documentElement.classList.add('shopify-design-mode');
     }
     </script>
-  </head>
+  
+  {%- comment -%} START EASYPOINTS - DO NOT MODIFY! 変更しないでください! INFO @ https://bit.ly/2Dn7ESM {%- endcomment -%}
+      {%- unless shop.metafields.loyalty.easy_points_attributes.value.stealth_mode -%}
+    {% render 'easy_points_metafield_script' %}
+{{ 'easy_points.css' | asset_url | stylesheet_tag }}
+{{ 'easy_points.js' | asset_url | script_tag }}
+{{ 'easy_points_integration.css' | asset_url | stylesheet_tag }}
+{{ 'easy_points_integration.js' | asset_url | script_tag }}
+  {%- endunless -%}
+
+  {%- comment -%} END EASYPOINTS {%- endcomment -%}
+{% comment %}Do not edit this line{% endcomment %}
+{% render '_hasigo-pre-order-v0.0.8.liquid', product: product, api_host: 'pre-order.app.growth.ec', assets_host: 'assets-pre-order.app.growth.ec', theme_snippet_version: 'v0.0.8' %}
+</head>
 
   <body class="gradient">
     <a class="skip-to-content-link button visually-hidden" href="#MainContent">
@@ -217,7 +231,7 @@
     {% section 'announcement-bar' %}
     {% section 'header' %}
     <main id="MainContent" class="content-for-layout focus-none" role="main" tabindex="-1">
-      {{ content_for_layout }}
+      {% comment %}{{ content_for_layout }}{% endcomment %}{% render 'easylockdown_body', content_for_layout: content_for_layout, elhDefines: elhRender[1] %}
     </main>
 
     {% section 'footer' %}
@@ -257,5 +271,13 @@
     {%- if settings.predictive_search_enabled -%}
       <script src="{{ 'predictive-search.js' | asset_url }}" defer="defer"></script>
     {%- endif -%}
-  </body>
+  
+  {%- comment -%} START EASYPOINTS - DO NOT MODIFY! 変更しないでください! INFO @ https://bit.ly/2Dn7ESM {%- endcomment -%}
+      {%- unless shop.metafields.loyalty.easy_points_attributes.value.stealth_mode -%}
+    {% include 'easy_points' %}
+    {% include 'easy_points_widget' %}
+  {%- endunless -%}
+
+  {%- comment -%} END EASYPOINTS {%- endcomment -%}
+</body>
 </html>
