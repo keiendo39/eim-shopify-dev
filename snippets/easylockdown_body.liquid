@@ -1,1 +1,5 @@
+{% unless request.design_mode %}
 {{ content_for_layout }}
+{% else %}
+{{ content_for_layout }}
+{% endunless %}
